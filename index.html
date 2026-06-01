@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Kelulusan | SMPN 5 Banjarangkan 2025/2026</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ================= KUSTOMISASI VARIABEL WARNA ================= */
+        :root {
+            --navy: #0a192f;
+            --gold: #d4af37;
+            --white: #ffffff;
+            --bg-color: #f4f7f6;
+            --text-dark: #333333;
+            --text-light: #888888;
+            --success: #28a745;
+            --danger: #dc3545;
+        }
+
+        /* ================= RESET & BASIC ================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
+        
+        /* ================= ANIMASI SPA ================= */
+        .page { display: none; opacity: 0; }
+        .page.active { display: block; animation: slideUp 0.6s ease forwards; }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ================= TYPOGRAPHY & BUTTONS ================= */
+        h1, h2, h3 { color: var(--navy); }
+        .text-gold { color: var(--gold); }
+        .text-center { text-align: center; }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--navy);
+            color: var(--gold);
+            padding: 12px 24px;
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .btn:hover:not(:disabled) { background-color: var(--gold); color: var(--navy); }
+        .btn:disabled { background-color: #cccccc; border-color: #999999; color: #666666; cursor: not-allowed; }
+        
+        .btn-outline { background-color: transparent; color: var(--navy); border-color: var(--navy); }
+        .btn-outline:hover { background-color: var(--navy); color: var(--gold); }
+
+        /* ================= LAYOUTING ================= */
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .card { background: var(--white); border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        
+        /* ================= HEADER ================= */
+        header { background-color: var(--navy); padding: 30px 20px; text-align: center; color: var(--white); border-bottom: 5px solid var(--gold); }
+        .logo-img { width: 100px; height: auto; margin-bottom: 15px; }
+        header h1 { color: var(--gold); font-size: 24px; margin-bottom: 5px; }
+        header p { color: var(--white); font-size: 14px; opacity: 0.9; }
+        
+        /* SVG Topi Toga (Hero) */
+        .hero-svg { width: 120px; height: 120px; margin: 0 auto 20px auto; display: block; fill: var(--gold); }
+
+        /* ================= GRID SECTIONS (HOME) ================= */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        
+        .info-box { background: #fff; padding: 20px; border-radius: 10px; border-left: 4px solid var(--navy); box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .info-box h3 { font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        
+        .stat-box { text-align: center; padding: 25px 15px; background: var(--navy); color: var(--white); border-radius: 10px; border-bottom: 4px solid var(--gold); }
+        .stat-box h2 { color: var(--gold); font-size: 32px; margin-bottom: 5px; }
+        .stat-box p { font-size: 14px; margin: 0; }
+
+        /* ================= COUNTDOWN TIMER ================= */
+        .timer-container { display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap; }
+        .timer-box { background: var(--navy); width: 80px; height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 10px; border: 2px solid var(--gold); color: var(--white); box-shadow: 0 5px 15px rgba(10, 25, 47, 0.2); }
+        .timer-box span { font-size: 28px; font-weight: 700; color: var(--gold); line-height: 1; }
+        .timer-box small { font-size: 12px; text-transform: uppercase; margin-top: 5px; }
+
+        /* ================= HALAMAN SAMBUTAN ================= */
+        .sambutan-content { font-size: 15px; text-align: justify; }
+        .signature-area { display: flex; justify-content: flex-end; margin-top: 30px; text-align: center; }
+        .signature-img { width: 150px; height: auto; margin: 10px 0; }
+
+        /* ================= FORM CEK KELULUSAN ================= */
+        .search-container { max-width: 500px; margin: 0 auto 30px auto; text-align: center; }
+        .input-group { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+        input[type="text"] { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; text-align: center; outline: none; transition: border 0.3s; }
+        input[type="text"]:focus { border-color: var(--navy); }
+        
+        /* ================= HASIL KELULUSAN ================= */
+        .hasil-card { text-align: center; max-width: 700px; margin: 0 auto; display: none; }
+        .status-badge { display: inline-block; padding: 10px 30px; font-size: 24px; font-weight: 700; border-radius: 50px; margin: 20px 0; color: #fff; }
+        .status-lulus { background-color: var(--success); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3); }
+        .status-gagal { background-color: var(--danger); box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3); }
+        
+        .data-siswa { text-align: left; background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid var(--navy); }
+        .data-siswa table { width: 100%; border-collapse: collapse; }
+        .data-siswa td { padding: 8px 0; font-size: 15px; border-bottom: 1px solid #eee; }
+        .data-siswa td:first-child { font-weight: 600; width: 35%; color: var(--navy); }
+
+        .pesan-hasil { font-style: italic; color: var(--text-light); margin-bottom: 25px; }
+
+        /* ================= FOOTER ================= */
+        footer { text-align: center; padding: 20px; color: var(--text-light); font-size: 14px; margin-top: 40px; }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .timer-box { width: 65px; height: 65px; }
+            .timer-box span { font-size: 20px; }
+            header h1 { font-size: 20px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER GLOBAL -->
+    <header>
+        <img src="https://cdn.phototourl.com/free/2026-05-31-c76867b2-eca7-484d-b50f-ab5afb477e35.png" alt="Logo Sekolah" class="logo-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0MCIgZmlsbD0iI2Q0YWYzNyIvPjwvc3ZnPg=='">
+        <h1>SMP NEGERI 5 BANJARANGKAN</h1>
+        <p>Pengumuman Kelulusan Siswa Tahun Pelajaran 2025/2026</p>
+    </header>
+
+    <div class="container" id="main-container">
+        
+        <!-- ================= HALAMAN 1: BERANDA ================= -->
+        <div id="page-home" class="page active">
+            
+            <div class="text-center" style="margin-top: 20px;">
+                <!-- SVG Bintang/Toga Edukasi -->
+                <svg class="hero-svg" viewBox="0 0 24 24">
+                    <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2.18-1.18V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+                </svg>
+                <h2 style="margin-bottom: 10px;">Portal Resmi Kelulusan</h2>
+                <p class="text-light">Selamat datang di portal informasi kelulusan siswa/siswi SMP Negeri 5 Banjarangkan. Silakan pantau waktu pengumuman di bawah ini.</p>
+            </div>
+
+            <!-- COUNTDOWN TIMER -->
+            <div class="card" style="margin-top: 30px; text-align: center; border-top: 4px solid var(--navy);">
+                <h3 class="text-gold">WAKTU MENUJU PENGUMUMAN</h3>
+                <div class="timer-container" id="countdown-timer">
+                    <div class="timer-box"><span id="days">00</span><small>Hari</small></div>
+                    <div class="timer-box"><span id="hours">00</span><small>Jam</small></div>
+                    <div class="timer-box"><span id="minutes">00</span><small>Menit</small></div>
+                    <div class="timer-box"><span id="seconds">00</span><small>Detik</small></div>
+                </div>
+                
+                <div id="action-area">
+                    <button class="btn" id="btn-masuk-portal" disabled>PENGUMUMAN BELUM DIBUKA</button>
+                </div>
+            </div>
+
+            <!-- TENTANG & PROGRAM -->
+            <div class="grid-2">
+                <div class="info-box">
+                    <h3>📍 Informasi Sekolah</h3>
+                    <p style="font-size: 14px; margin-top:10px;">
+                        <strong>Alamat:</strong> Dusun Losan, Desa Takmung, Kecamatan Banjarangkan, Kabupaten Klungkung, Bali 80752<br>
+                        <strong>Telepon:</strong> (0366) 123456<br>
+                        <strong>Website:</strong> www.smpn5banjarangkan.sch.id<br>
+                        <strong>Visi:</strong> "Mewujudkan peserta didik yang Cerdas, Inovatif, Santun, Trampil, Berbudaya, dan Berwawasan Global yang berlandaskan pada nilai-nilai Tri Hita Karana."
+                    </p>
+                </div>
+                <div class="info-box">
+                    <h3>🏆 Program & Kelas Unggulan</h3>
+                    <ul style="font-size: 14px; margin-top:10px; padding-left: 20px;">
+                        <li><strong>Kelas Prestasi Akademik:</strong> Pembinaan intensif olimpiade sains & matematika.</li>
+                        <li><strong>Ekstrakurikuler Seni Budaya:</strong> Pelestarian tari dan gamelan tradisional Bali.</li>
+                        <li><strong>Pendidikan Karakter (Pramuka):</strong> Membentuk jiwa disiplin dan kepemimpinan.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- INFO PENTING -->
+            <div class="card" style="background-color: #fff3cd; border-left: 4px solid #ffc107;">
+                <h3 style="color: #856404; margin-bottom: 10px;">⚠️ Informasi Penting</h3>
+                <ul style="font-size: 14px; color: #856404; padding-left: 20px;">
+                    <li>Status <strong>LULUS</strong> akan ditandai dengan warna hijau.</li>
+                    <li>Status <strong>TIDAK LULUS</strong> akan ditandai dengan warna merah. Siswa diharapkan menghubungi pihak sekolah.</li>
+                    <li>Dilarang keras melakukan konvoi atau corat-coret seragam sekolah!</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN 2: SAMBUTAN ================= -->
+        <div id="page-sambutan" class="page">
+            <div class="card">
+                <h2 class="text-center" style="margin-bottom: 25px;">Sambutan Kepala Sekolah</h2>
+                <div class="sambutan-content">
+                    <p>Om Swastyastu,</p><br>
+                    <p>Puji syukur kita panjatkan ke hadirat Ida Sang Hyang Widhi Wasa, Tuhan Yang Maha Esa, karena atas asung kertha wara nugraha-Nya, kita semua diberikan kesehatan dan kesempatan untuk menyelesaikan tahun pelajaran 2025/2026 ini dengan baik.</p><br>
+                    <p>Anak-anakku siswa-siswi kelas IX yang Ibu banggakan, hari ini adalah momen yang sangat penting bagi kalian. Pengumuman kelulusan ini bukanlah akhir dari perjalanan, melainkan langkah awal untuk melangkah ke jenjang pendidikan yang lebih tinggi. Apapun hasil yang kalian terima, jadikan itu sebagai motivasi untuk terus berjuang meraih cita-cita.</p><br>
+                    <p>Bagi yang dinyatakan lulus, Ibu ucapkan Selamat! Tetaplah rendah hati dan hindari euforia berlebihan. Bagi yang mungkin belum beruntung, jangan berkecil hati, perjalanan masih panjang. Ingatlah selalu nilai-nilai karakter yang telah ditanamkan di SMP Negeri 5 Banjarangkan.</p><br>
+                    <p>Om Santih, Santih, Santih, Om.</p>
+                </div>
+                
+                <div class="signature-area">
+                    <div>
+                        <p>Banjarangkan, 02 Juni 2026<br>Kepala Sekolah,</p>
+                        <img src="https://cdn.phototourl.com/free/2026-05-31-44bce1bb-d5e8-48ef-8485-ac34b695c181.png" alt="Tanda Tangan" class="signature-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTAiIGhlaWdodD0iNTAiPjx0ZXh0IHg9IjEwIiB5PSIzMCIgZm9udC1mYW1pbHk9ImN1cnNpdmUiIGZvbnQtc2l6ZT0iMjAiPihUVkQpPC90ZXh0Pjwvc3ZnPg=='">
+                        <p><strong>Dra. Luh Gede Yuliastini, M.Pd</strong><br>NIP. 196712311992032067</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                    <button class="btn btn-outline" onclick="showPage('page-home')">⬅ Kembali ke Beranda</button>
+                    <button class="btn" onclick="showPage('page-cek')">Lanjut Cek Kelulusan ➡</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= HALAMAN 3: CEK KELULUSAN ================= -->
+        <div id="page-cek" class="page">
+            <div class="card search-container">
+                <h2 style="margin-bottom: 10px;">Cek Status Kelulusan</h2>
+                <p class="text-light">Masukkan Nomor Induk Siswa Nasional (NISN) Anda pada kolom di bawah ini.</p>
+                
+                <div class="input-group">
+                    <input type="text" id="input-nisn" placeholder="Contoh: 0102921380" autocomplete="off">
+                    <button class="btn" id="btn-cek" onclick="cekKelulusan()">CEK KELULUSAN</button>
+                    <button class="btn btn-outline" onclick="showPage('page-sambutan')" style="margin-top: 10px;">Kembali</button>
+                </div>
+                
+                <!-- Pesan Error -->
+                <p id="error-msg" style="color: var(--danger); font-weight: 600; margin-top: 15px; display: none;">❌ Data tidak ditemukan. Periksa kembali NISN Anda.</p>
+            </div>
+            
+            <!-- HASIL KELULUSAN (Ditampilkan lewat JS) -->
+            <div id="page-hasil" class="hasil-card card">
+                
+                <h3 style="margin-bottom: 20px; text-decoration: underline;">HASIL KELULUSAN</h3>
+
+                <div class="data-siswa">
+                    <table>
+                        <tr>
+                            <td>Nama Lengkap</td>
+                            <td>: <span id="res-nama"></span></td>
+                        </tr>
+                        <tr>
+                            <td>NISN</td>
+                            <td>: <span id="res-nisn"></span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="res-status" class="status-badge">LULUS</div>
+                
+                <p class="pesan-hasil" id="res-pesan"></p>
+                
+                <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px;" id="action-buttons">
+                    <button class="btn btn-outline" id="btn-back" onclick="resetForm()">Cek Siswa Lain</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; SMP Negeri 5 Banjarangkan.<br>
+        Sistem Informasi Kelulusan Sekolah.
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        // LOGIKA SINGLE PAGE APPLICATION (SPA)
+        function showPage(pageId) {
+            // Sembunyikan semua page
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            // Tampilkan page yang dituju
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll ke atas dengan halus
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 3. LOGIKA COUNTDOWN TIMER
+        // Target: 2 Juni 2026 Jam 10:00:00
+        const targetDate = new Date("Jun 2, 2026 10:00:00").getTime();
+        const btnMasuk = document.getElementById("btn-masuk-portal");
+
+        const timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Kalkulasi Hari, Jam, Menit, Detik
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Tampilkan ke HTML (dengan tambahan angka 0 di depan jika < 10)
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            // Jika waktu sudah habis
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("countdown-timer").style.display = "none";
+                
+                // Aktifkan Tombol
+                btnMasuk.disabled = false;
+                btnMasuk.innerText = "MASUK KE HALAMAN PENGUMUMAN";
+                btnMasuk.onclick = function() { showPage('page-sambutan'); };
+                
+                // Ubah teks header card timer
+                document.querySelector('#page-home .card h3').innerText = "PENGUMUMAN TELAH DIBUKA!";
+            }
+        }, 1000);
+
+        // 4. DATABASE CSV (COPY-PASTE DARI EXCEL KESINI)
+        // Format Wajib: Nama,NISN,Status
+        const dataCSV = `Nama,NISN,Status
+BAGUS GEDE INDRA PRAMANA,0102921380,LULUS
+I GEDE ANDIKA PUTRAYASA,0102434438,LULUS
+I Gede Diva Pratama,0119470087,LULUS
+I Gusti Ayu Bhajanti Visakharani Devi Dasi,0086991614,LULUS
+I Gusti Ngurah Agung Jaya Kasunu,0107054171,LULUS
+I Kadek Krisnayana Putra,0114945504,LULUS
+I Ketut Bisma,0113200858,LULUS
+I Komang Pande Alit Riski Pratama,0116175655,LULUS
+I MADE BAYU ARI MAHAYASA,0113048077,LULUS
+I Putu Natan Nanditama,0117411103,LULUS
+Ida Ayu Putu Eka Cintya Putri,0103989591,LULUS
+Komang Sinta Widya Sari,0118902758,LULUS
+LUH PUTU DIANA,0109997550,LULUS
+Ni Gusti Ayu Dina Hepiyani,0117623764,LULUS
+Ni Kadek Jelita Berliana Dewi,0119696760,LULUS
+Ni Komang Ayu Intan Pratiwi,0116969356,LULUS
+Putu Aditya Aryana P,0119092917,LULUS
+I KOMANG RADITYA WAHYUDI PUTRA,0109517297,LULUS
+I Made Deva Mahayasa,0118597888,LULUS
+I Made Dharma Ananta,0111937312,LULUS
+I PUTU EKA WINATA,0113467647,LULUS
+I Putu Ryan Candra Wijaya,0116354813,LULUS
+Made Galang Pradiva,0114710661,LULUS
+Made Juwitra,0115697282,LULUS
+NI KOMANG WINYANDARI,0112216251,LULUS
+Ni Made Mariani,0083011582,LULUS
+Ni Putu Dian Lismayanti,0109817366,LULUS
+Ni Putu Dian Natalia,0104366531,LULUS
+Ni Putu Dita Utami,0115028291,LULUS
+Ni Wayan Juli Jayanti,0117128862,LULUS
+PUTU ADI SETYA DARMA,0109521261,LULUS
+PUTU KENNI RAKANANDA,0114519030,LULUS
+Putu Melyani Diah Pitha Loka,0118736442,LULUS
+PUTU SESARINI OKTAYANTI,0102569627,LULUS`;
+
+        // Parse CSV menjadi Array of Objects
+        function parseCSV(csvText) {
+            const lines = csvText.trim().split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            const result = [];
+            
+            for(let i = 1; i < lines.length; i++) {
+                const currentLine = lines[i].split(',').map(v => v.trim());
+                if(currentLine.length === headers.length) {
+                    const obj = {};
+                    headers.forEach((h, j) => {
+                        obj[h] = currentLine[j];
+                    });
+                    result.push(obj);
+                }
+            }
+            return result;
+        }
+
+        const dataSiswa = parseCSV(dataCSV);
+
+        // 5. LOGIKA PENCARIAN & MENAMPILKAN HASIL
+        function cekKelulusan() {
+            const inputNISN = document.getElementById("input-nisn").value.trim();
+            const errorMsg = document.getElementById("error-msg");
+            const formContainer = document.querySelector(".search-container");
+            const hasilCard = document.getElementById("page-hasil");
+
+            if(inputNISN === "") {
+                errorMsg.innerText = "⚠️ Harap masukkan NISN Anda!";
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            // Cari data berdasarkan NISN
+            const siswa = dataSiswa.find(s => s.NISN === inputNISN);
+
+            if (siswa) {
+                // Sembunyikan form pencarian, tampilkan hasil
+                errorMsg.style.display = "none";
+                formContainer.style.display = "none";
+                hasilCard.style.display = "block";
+
+                // Isi data ke tabel
+                document.getElementById("res-nama").innerText = siswa.Nama;
+                document.getElementById("res-nisn").innerText = siswa.NISN;
+
+                // Logika Status & Warna
+                const badgeStatus = document.getElementById("res-status");
+                const pesan = document.getElementById("res-pesan");
+
+                if (siswa.Status.toUpperCase() === "LULUS") {
+                    badgeStatus.innerText = "LULUS";
+                    badgeStatus.className = "status-badge status-lulus";
+                    pesan.innerText = '"Selamat! Anda dinyatakan LULUS. SKL dapat diperoleh di sekolah dengan waktu yang telah ditentukan."';
+                } else {
+                    badgeStatus.innerText = "TIDAK LULUS";
+                    badgeStatus.className = "status-badge status-gagal";
+                    pesan.innerText = '"Tetap semangat dan jangan putus asa. Silakan hubungi pihak sekolah/wali kelas untuk informasi lebih lanjut."';
+                }
+            } else {
+                // Jika tidak ditemukan
+                errorMsg.innerText = "❌ Data tidak ditemukan. Periksa kembali NISN Anda.";
+                errorMsg.style.display = "block";
+            }
+        }
+
+        // Dukungan tekan tombol "Enter" pada keyboard untuk cek
+        document.getElementById("input-nisn").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                cekKelulusan();
+            }
+        });
+
+        // Logika Reset Form (Cek Siswa Lain)
+        function resetForm() {
+            document.getElementById("input-nisn").value = "";
+            document.getElementById("page-hasil").style.display = "none";
+            document.querySelector(".search-container").style.display = "block";
+            document.getElementById("input-nisn").focus();
+        }
+    </script>
+</body>
+</html>
